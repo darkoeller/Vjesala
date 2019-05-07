@@ -11,19 +11,15 @@ namespace Vjesala
 {
     class Hangman
     {
-        static private List<string> wordList = VratiListuRijeci(); 
+        private static readonly List<string> _wordList = VratiListuRijeci(); 
         
         public Player Player { get; }
-        static public ReadOnlyCollection<string> WordList { get; } = new ReadOnlyCollection<string>(wordList);
+        public static ReadOnlyCollection<string> WordList { get; } = new ReadOnlyCollection<string>(_wordList);
         public string Word { get; }
         public Outcome Outcome { get; private set; }
         public Hangman(Player player)
         {
-            if (player == null)
-            {
-                throw new ArgumentNullException(nameof(player));
-            }
-            Player = player;
+            Player = player ?? throw new ArgumentNullException(nameof(player));
             //_wordList = VratiListuRijeci();
             //WordList = new ReadOnlyCollection<string>(_wordList);
         }
@@ -33,11 +29,11 @@ namespace Vjesala
         {
 
         }
-        static private List<string> VratiListuRijeci()
+        private static List<string> VratiListuRijeci()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             using (var stream = assembly.GetManifestResourceStream(@"Vjesala.ListaRijeci.txt"))
-            using (var reader = new StreamReader(stream))
+            using (var reader = new StreamReader(stream ?? throw new InvalidOperationException()))
             {
                 var text = reader.ReadToEnd();
                 string[] array = text.Split(

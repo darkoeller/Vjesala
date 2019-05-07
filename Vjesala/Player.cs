@@ -12,11 +12,7 @@ namespace Vjesala
         public string Ime { get; set; }
         public Player(string name)
         {
-            if (name == null)
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-            Ime = name;
+            Ime = name ?? throw new ArgumentNullException(nameof(name));
         }
         public Player() : this("Anonymous")
         { }
