@@ -1,6 +1,6 @@
-﻿namespace Vjesala
+﻿namespace Igra
 {
-    enum Outcome
+    public enum Outcome
     {
         InProgress,
         Win,

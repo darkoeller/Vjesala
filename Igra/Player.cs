@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vjesala
+namespace Igra
 {
-    class Player
+    public class Player
     {
 
         public string Ime { get; set; }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Igra;
 
 namespace Vjesala
 {
@@ -10,17 +7,16 @@ namespace Vjesala
     {
         static void Main()
         {
-            var player = new Player("Darko");
             var game = new Hangman();
 
-            var voce = Hangman.WordList;
-            foreach (var item in voce)
+            while (game.Outcome == Outcome.InProgress)
             {
-                Console.WriteLine(item);
+                Console.WriteLine("Upiši slovo: ");
+                var keyinfo = Console.ReadKey(true);
+                game.Guess(keyinfo.KeyChar);
             }
-
+            Console.ReadKey();
             
-           // game.Guess('a');
         }
     }
 }

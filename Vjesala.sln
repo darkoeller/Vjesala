@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vjesala", "Vjesala\Vjesala.csproj", "{D6F2EB98-610A-428D-825D-09DA9FD5D045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igra", "Igra\Igra.csproj", "{5C66A31F-4144-4394-AF67-EB3E2FB656A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D6F2EB98-610A-428D-825D-09DA9FD5D045}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F2EB98-610A-428D-825D-09DA9FD5D045}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F2EB98-610A-428D-825D-09DA9FD5D045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C66A31F-4144-4394-AF67-EB3E2FB656A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C66A31F-4144-4394-AF67-EB3E2FB656A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C66A31F-4144-4394-AF67-EB3E2FB656A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C66A31F-4144-4394-AF67-EB3E2FB656A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
