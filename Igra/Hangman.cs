@@ -11,11 +11,17 @@ namespace Igra
 {
     public class Hangman
     {
+        public event EventHandler<char> DupliPogotci;
+        public event EventHandler<char> PogresniPogotci;
+        public event EventHandler<char> IspravniPogotci;
+        public event EventHandler<char> Poraz;
+        public event EventHandler<char> Pobjeda;
+
         private static readonly List<string> _wordList = VratiListuRijeci(); 
         private int brojDozvoljenihGresaka;
         private int incorrectGuesses = 0;
         private HashSet<char> vecPogodjeno = new HashSet<char>();
-        private char [] wordToDisplay;
+        public char [] wordToDisplay;
         public static ReadOnlyCollection<string> WordList { get; } = new ReadOnlyCollection<string>(_wordList);
        
         public Player Player { get; }
@@ -26,7 +32,7 @@ namespace Igra
             get{ return brojDozvoljenihGresaka - incorrectGuesses;}
         }
 
-        public Hangman(Player player, int brojDozvoljenihGresaka = 7)
+         public Hangman(Player player, int brojDozvoljenihGresaka = 7)
         {
             Player = player ?? throw new ArgumentNullException(nameof(player), "ne može igrač biti nitko");
             if (brojDozvoljenihGresaka < 0)
@@ -54,9 +60,12 @@ namespace Igra
         {
             if (Outcome != Outcome.InProgress)
                 throw new InvalidOperationException("igra nije u tijeku");
+           
             if (vecPogodjeno.Contains(letter))
             {
-                Console.WriteLine("Ovo si već pogodio!");
+                DupliPogotci?.Invoke(this, letter);
+
+                return;
             }
             vecPogodjeno.Add(letter);
 
@@ -68,11 +77,11 @@ namespace Igra
                 if (incorrectGuesses > brojDozvoljenihGresaka)
                 {
                     Outcome = Outcome.Loss;
-                    Console.WriteLine("Popušio si!");
+                    Poraz?.Invoke(this, letter);
                 }
                 else
                 {
-                    Console.WriteLine($"Samo {PreostalihGresaka} grešaka ti je ostalo!");
+                    PogresniPogotci?.Invoke(this, letter);
                 }
             }
             else
@@ -82,6 +91,7 @@ namespace Igra
                 if (!wordToDisplay.Contains('_'))
                 {
                     Outcome = Outcome.Win;
+                    Pobjeda?.Invoke(this, letter);
                     Console.WriteLine("Braavo, pobjednik si!");
                 }
             }
